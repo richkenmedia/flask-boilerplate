@@ -1,0 +1,2 @@
+FLASK_APP=skill_tracker
+FLASK_ENV=development
