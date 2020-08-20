@@ -1,2 +1,2 @@
-FLASK_APP=skill_tracker
+FLASK_APP=flask_dir
 FLASK_ENV=development

@@ -7,8 +7,8 @@ from flask_pymongo import PyMongo
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 
-from skill_tracker import mongo
-from skill_tracker.utils.validation import check_empty_field
+from flask_dir import mongo
+from flask_dir.utils.validation import check_empty_field
 
 permission_blueprint = Blueprint(
     'permission', __name__, url_prefix='/api/permission')

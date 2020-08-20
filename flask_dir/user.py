@@ -10,8 +10,8 @@ from flask_jwt_extended import (
     jwt_required, get_jwt_identity
 )
 
-from skill_tracker import mongo
-from skill_tracker.utils.validation import check_email_field, check_password
+from flask_dir import mongo
+from flask_dir.utils.validation import check_email_field, check_password
 
 
 user_blueprint = Blueprint('user', __name__, url_prefix='/api/user/')
@@ -107,7 +107,7 @@ class UserWithParameter(Resource):
                             "username": args.get('username'),
                             "email": args.get('email'),
                             "status": args.get('status'),
-                            "updated_at": now.strftime("%d/%m/%Y %H:%M:%S")
+                            "updated_at": now.strftime("%d/%m/%Y %H:%M:%S"),
                             "status_updated_at": now.strftime("%d/%m/%Y %H:%M:%S"),
                         }
                     }

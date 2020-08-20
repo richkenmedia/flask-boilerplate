@@ -9,9 +9,9 @@ from bson.objectid import ObjectId
 from flask_jwt_extended import (
     jwt_required
 )
-from skill_tracker import mongo
-from skill_tracker.utils.decorators import current_user_permission
-from skill_tracker.utils.validation import check_empty_field
+from flask_dir import mongo
+from flask_dir.utils.decorators import current_user_permission
+from flask_dir.utils.validation import check_empty_field
 
 
 role_blueprint = Blueprint('role', __name__, url_prefix='/api/role')
@@ -170,7 +170,7 @@ class RoleWithParameter(Resource):
             if role['status'] == 'empty':
                 return role['result']
 
-            if role['result']['name'] == 'tenant' or role['result']['name'] == 'user':
+            if role['result']['name'] == 'admin' or role['result']['name'] == 'user':
                 name = role['name']
             else:
                 name = args.get('name')

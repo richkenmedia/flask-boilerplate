@@ -9,8 +9,8 @@ from flask_jwt_extended import (
     create_access_token, jwt_required, get_raw_jwt
 )
 
-from skill_tracker import mongo, jwt
-from skill_tracker.utils.validation import check_email_field, check_password, check_empty_field
+from flask_dir import mongo, jwt
+from flask_dir.utils.validation import check_email_field, check_password, check_empty_field
 
 authentication_blueprint = Blueprint(
     'authentication', __name__, url_prefix='/api/auth')
@@ -44,7 +44,7 @@ class Register(Resource):
             http_error_code=422)
 
         try:
-            roles = mongo.db.roles.find_one({'name': 'tenant'})
+            roles = mongo.db.roles.find_one({'name': 'user'})
             status = "active"
             password = args.get('password')
             now = datetime.now()

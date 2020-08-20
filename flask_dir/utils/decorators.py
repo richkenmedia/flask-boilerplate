@@ -3,7 +3,7 @@ from functools import wraps
 from flask_jwt_extended import get_jwt_identity
 from werkzeug.exceptions import Forbidden
 
-from skill_tracker import mongo
+from flask_dir import mongo
 
 
 def current_user_permission(access_level):

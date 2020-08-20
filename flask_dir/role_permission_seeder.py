@@ -1,6 +1,6 @@
 
 import datetime
-from skill_tracker import mongo
+from flask_dir import mongo
 
 
 def create_permission_role(permission_id, name):
@@ -36,9 +36,9 @@ class RolePermissionSeeder:
         permissions = mongo.db.permissions.count()
         roles = mongo.db.roles.count()
         if permissions == 0 and roles == 0:
-            employee = [
+            user = [
                 {
-                    "name": 'employee_create',
+                    "name": 'user_create',
                     'status': 'active',
                     "created_at": datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
                     "updated_at": "",
@@ -46,7 +46,7 @@ class RolePermissionSeeder:
                     "updated_by": "",
                 },
                 {
-                    "name": 'employee_update',
+                    "name": 'user_update',
                     'status': 'active',
                     "created_at": datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
                     "updated_at": "",
@@ -54,7 +54,7 @@ class RolePermissionSeeder:
                     "updated_by": "",
                 },
                 {
-                    "name": 'employee_show',
+                    "name": 'user_show',
                     'status': 'active',
                     "created_at": datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
                     "updated_at": "",
@@ -62,7 +62,7 @@ class RolePermissionSeeder:
                     "updated_by": "",
                 },
                 {
-                    "name": 'employee_delete',
+                    "name": 'user_delete',
                     'status': 'active',
                     "created_at": datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
                     "updated_at": "",
@@ -70,7 +70,7 @@ class RolePermissionSeeder:
                     "updated_by": "",
                 },
                 {
-                    "name": 'employee_list',
+                    "name": 'user_list',
                     'status': 'active',
                     "created_at": datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
                     "updated_at": "",
@@ -78,7 +78,7 @@ class RolePermissionSeeder:
                     "updated_by": "",
                 },
                 {
-                    "name": 'employee_report',
+                    "name": 'user_report',
                     'status': 'active',
                     "created_at": datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
                     "updated_at": "",
@@ -88,13 +88,13 @@ class RolePermissionSeeder:
 
             ]
 
-            employee_permission_id = mongo.db.permissions.insert_many(employee)
+            user_permission_id = mongo.db.permissions.insert_many(user)
             create_permission_role(
-                employee_permission_id.inserted_ids, 'employee')
+                user_permission_id.inserted_ids, 'user')
 
-            tenant = [
+            admin = [
                 {
-                    "name": 'tenant_create',
+                    "name": 'admin_create',
                     'status': 'active',
                     "created_at": datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
                     "updated_at": "",
@@ -102,7 +102,7 @@ class RolePermissionSeeder:
                     "updated_by": "",
                 },
                 {
-                    "name": 'tenant_update',
+                    "name": 'admin_update',
                     'status': 'active',
                     "created_at": datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
                     "updated_at": "",
@@ -110,7 +110,7 @@ class RolePermissionSeeder:
                     "updated_by": "",
                 },
                 {
-                    "name": 'tenant_show',
+                    "name": 'admin_show',
                     'status': 'active',
                     "created_at": datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
                     "updated_at": "",
@@ -118,7 +118,7 @@ class RolePermissionSeeder:
                     "updated_by": "",
                 },
                 {
-                    "name": 'tenant_delete',
+                    "name": 'admin_delete',
                     'status': 'active',
                     "created_at": datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
                     "updated_at": "",
@@ -126,7 +126,7 @@ class RolePermissionSeeder:
                     "updated_by": "",
                 },
                 {
-                    "name": 'tenant_list',
+                    "name": 'admin_list',
                     'status': 'active',
                     "created_at": datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
                     "updated_at": "",
@@ -134,7 +134,7 @@ class RolePermissionSeeder:
                     "updated_by": "",
                 },
                 {
-                    "name": 'tenant_report',
+                    "name": 'admin_report',
                     'status': 'active',
                     "created_at": datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
                     "updated_at": "",
@@ -143,8 +143,8 @@ class RolePermissionSeeder:
                 }
 
             ]
-            tenant_permission_id = mongo.db.permissions.insert_many(tenant)
-            create_permission_role(tenant_permission_id.inserted_ids, 'tenant')
+            admin_permission_id = mongo.db.permissions.insert_many(admin)
+            create_permission_role(admin_permission_id.inserted_ids, 'admin')
 
     except Exception as e:
         pass

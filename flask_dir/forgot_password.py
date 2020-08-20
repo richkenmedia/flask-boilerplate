@@ -8,8 +8,8 @@ from bson.json_util import dumps
 from bson.objectid import ObjectId
 from flask_mail import Message
 
-from skill_tracker import mongo, mail
-from skill_tracker.utils.validation import check_email_field, check_empty_field
+from flask_dir import mongo, mail
+from flask_dir.utils.validation import check_email_field, check_empty_field
 
 
 forgot_password_blueprint = Blueprint(
