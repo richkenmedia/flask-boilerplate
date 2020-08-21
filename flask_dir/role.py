@@ -52,9 +52,9 @@ parser.add_argument(
 parser.add_argument(
     'name', type=check_empty_field, help='Please Enter Name Field', location='json', nullable=False, required=True)
 parser.add_argument(
-    'status', type=check_empty_field, help='This Field is required', location='json')
+    'status', type=check_empty_field, help='This Field is required', location='json', nullable=False, required=True)
 parser.add_argument(
-    'permission_id', location='json', action='append')
+    'permissions', location='json', action='append')
 
 
 class Role(Resource):
@@ -94,7 +94,7 @@ class Role(Resource):
                 "created_by": "",
                 "updated_by": "",
             })
-            permission_id = args['permission_id']
+            permission_id = args['permissions']
             if permission_id is not None:
                 role_permission(permission_id, result.inserted_id)
 
@@ -215,7 +215,7 @@ class RoleWithParameter(Resource):
                 }
 
             )
-            permission_id = args['permission_id']
+            permission_id = args['permissions']
             if permission_id is not None:
                 role_permission(permission_id, ObjectId(id))
 

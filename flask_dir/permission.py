@@ -18,7 +18,7 @@ parser = reqparse.RequestParser(bundle_errors=True)
 parser.add_argument(
     'name', type=check_empty_field, help='Please Enter Name Field', location='json', nullable=False, required=True)
 parser.add_argument(
-    'status', type=check_empty_field, help='This Field is required', location='json')
+    'status', type=check_empty_field, help='This Field is required', location='json', nullable=False, required=True)
 
 
 class Permission(Resource):

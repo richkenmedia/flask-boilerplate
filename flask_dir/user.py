@@ -11,7 +11,7 @@ from flask_jwt_extended import (
 )
 
 from flask_dir import mongo
-from flask_dir.utils.validation import check_email_field, check_password
+from flask_dir.utils.validation import check_email_field, check_password, check_empty_field
 
 
 user_blueprint = Blueprint('user', __name__, url_prefix='/api/user/')
@@ -79,9 +79,9 @@ class UserWithParameter(Resource):
         parser.add_argument(
             'email', type=check_email_field,  help='Please enter email address', location='json', nullable=False, required=True)
         parser.add_argument(
-            'status', type=check_empty_field, help='This Field is required', location='json')
+            'status', type=check_empty_field, help='This Field is required', location='json', nullable=False, required=True)
         parser.add_argument(
-            'role_id', location='json', action='append')
+            'roles', location='json', action='append')
         args = parser.parse_args(
             http_error_code=422)
 
@@ -98,24 +98,18 @@ class UserWithParameter(Resource):
                         },
                         "results": "Username or Email already exist"}, 500
             else:
-                mongo.db.users.update_one(
-                    {'_id': ObjectId(id)},
-                    {
-                        "$set": {
-                            "first_name": args.get('first_name'),
-                            "last_name": args.get('last_name'),
-                            "username": args.get('username'),
-                            "email": args.get('email'),
-                            "status": args.get('status'),
-                            "updated_at": now.strftime("%d/%m/%Y %H:%M:%S"),
-                            "status_updated_at": now.strftime("%d/%m/%Y %H:%M:%S"),
-                        }
-                    }
-                )
+                data = {
+                    "first_name": args.get('first_name'),
+                    "last_name": args.get('last_name'),
+                    "username": args.get('username'),
+                    "email": args.get('email'),
+                    "status": args.get('status'),
+                    "updated_at": now.strftime("%d/%m/%Y %H:%M:%S"),
+                    "status_updated_at": now.strftime("%d/%m/%Y %H:%M:%S"),
+                }
 
-                role_id = args['role_id']
+                role_id = args['roles']
                 role_obj = []
-
                 if role_id is not None:
                     mongo.db.users.update_one(
                         {'_id': ObjectId(id)},
@@ -132,17 +126,14 @@ class UserWithParameter(Resource):
                     for i in range(0, len(role_id)):
                         role_obj.append(ObjectId(role_id[i]))
 
-                    mongo.db.users.update_one(
-                        {'_id': ObjectId(id)},
-                        {
-                            "$set": {
-                                "updated_at": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
-                                "roles": role_obj
-                            },
+                data.update({"roles": role_obj})
 
-
-                        }
-                    )
+                mongo.db.users.update_one(
+                    {'_id': ObjectId(id)},
+                    {
+                        "$set": data
+                    }
+                )
                 return {"status":
                         {
                             "code": 200,
