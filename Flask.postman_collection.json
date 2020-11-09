@@ -561,6 +561,11 @@
 								"key": "Content-Type",
 								"type": "text",
 								"value": "application/json"
+							},
+							{
+								"key": "Auth",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDQ4NTY0MzQsIm5iZiI6MTYwNDg1NjQzNCwianRpIjoiMGE3Zjg0MjItYzQzOC00MmVmLWI1OGMtNjQ4Yzk4NDAwYzk5IiwiZXhwIjoxNjA3NDQ4NDM0LCJpZGVudGl0eSI6Im5ld3MiLCJmcmVzaCI6ZmFsc2UsInR5cGUiOiJhY2Nlc3MifQ.ECd1oQHMS7DjO-TzRrNwX8D3V1JmF3wgLc70k4dn3dY",
+								"type": "text"
 							}
 						],
 						"url": {
@@ -762,6 +767,192 @@
 							"path": [
 								"api",
 								"role"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Function",
+			"item": [{
+					"name": "Create Function",
+					"request": {
+						"method": "POST",
+						"header": [{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"PermissionList-get\",\n    \"status\": \"active\",\n    \"permissions\": [1, 2]\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/function",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"function"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Function",
+					"request": {
+						"method": "GET",
+						"header": [{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/function/6",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"function",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"PermissionList-get\",\n    \"status\": \"active\",\n    \"permissions\": [6,5]\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/function/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"function",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/function/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"function",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Function lIst",
+					"request": {
+						"method": "GET",
+						"header": [{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTcwNjc1MDUsIm5iZiI6MTU5NzA2NzUwNSwianRpIjoiM2QyYTQwMzUtNjRjYS00YzRkLTg1MGUtNDMzYzNlZWM1MzFkIiwiZXhwIjoxNTk3MDY4NDA1LCJpZGVudGl0eSI6ImFtcnV0aGFAZ21haWwuY29tIiwiZnJlc2giOmZhbHNlLCJ0eXBlIjoiYWNjZXNzIn0.dUSpbL9QRUDedTo8tKu3E_merDMJ9aEF2XHVg5CTTIA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/function",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"function"
 							]
 						}
 					},
