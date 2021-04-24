@@ -2,7 +2,7 @@ import sys
 
 
 def seeder():
-    from flask_dir.seeder.role_permission_seeder import RolePermissionSeeder
+    from boilerplate.seeder.role_permission_seeder import RolePermissionSeeder
     RolePermissionSeeder.roleseeder()
 
 

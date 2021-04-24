@@ -1,2 +1,2 @@
-FLASK_APP=flask_dir
+FLASK_APP=boilerplate
 FLASK_ENV=development
